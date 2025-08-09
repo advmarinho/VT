@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Empresa – Termo de Opção de Vale-Transporte</title>
+<style>
+  :root{
+    --primary:#B11116;
+    --whats:#25D366;
+    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f8fafc; --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu}
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:16px 20px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand .dot{width:12px;height:12px;background:var(--primary);border-radius:3px;transform:rotate(45deg)}
+  .brand h1{font-size:18px;margin:0}
+  .sub{font-size:12px;color:var(--muted)}
+  .wrap{max-width:980px;margin:0 auto;padding:16px}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .row2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  label{font-size:12px;color:#374151;margin-bottom:4px;display:block}
+  input,select,textarea{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:10px;background:#fff;color:#111}
+  input[readonly]{background:#f3f4f6}
+  textarea{min-height:64px;resize:vertical;line-height:1.3}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border-bottom:1px solid var(--line);padding:8px;vertical-align:middle}
+  th{font-weight:600;color:#334155}
+  .center{text-align:center}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  button{padding:10px 14px;border-radius:10px;border:1px solid #d1d5db;background:#fff;color:#111;cursor:pointer}
+  button.primary{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:600}
+  button.whats{background:var(--whats);border-color:var(--whats);color:#fff;font-weight:600}
+  .muted{color:var(--muted);font-size:12px}
+  .error{color:#B11116;font-size:13px;margin-top:6px}
+  .pill{display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:#fff}
+
+  /* Destaque visual de erro */
+  .invalid{
+    border-color:#B11116 !important;
+    outline:0;
+    box-shadow:0 0 0 2px rgba(177,17,22,.10);
+  }
+  .error-list{
+    margin:6px 0 0 0;
+    padding-left:18px;
+  }
+  .error-list li{margin:2px 0}
+
+  @media(max-width:980px){
+    .wrap{padding:8px}
+    .row,.row2,.row4{grid-template-columns:1fr}
+    .btns{flex-direction:column}
+    .btns > button{width:100%}
+    table{font-size:12px}
+    th,td{padding:6px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="dot"></div>
+    <div>
+      <h1>Empresa – Termo de Opção de Vale-Transporte</h1>
+      <div class="sub">Preencha os dados.</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- Ação / Competência -->
+    <section class="card">
+      <div class="row">
+        <div>
+          <label>Opção de Vale-Transporte</label>
+          <select id="opcaoVT" required>
+            <option value="">Selecione</option>
+            <option>SIM</option>
+            <option>NÃO</option>
+          </select>
+        </div>
+        <div>
+          <label>Competência</label>
+          <input id="competencia" type="month" required />
+        </div>
+        <div>
+          <label>Status do cartão VT</label>
+          <select id="statusCartao" required>
+            <option value="">Selecione</option>
+            <option>Ativo</option>
+            <option>Novo</option>
+            <option>Bloqueado</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Identificação -->
+    <section class="card">
+      <div class="row4">
+        <div>
+          <label>Nome completo</label>
+          <input id="nome" placeholder="Nome completo" required />
+        </div>
+        <div>
+          <label>CPF</label>
+          <input id="cpf" placeholder="000.000.000-00" required />
+        </div>
+        <div>
+          <label>CTPS nº</label>
+          <input id="ctpsNumero" placeholder="Número da CTPS" required />
+        </div>
+        <div>
+          <label>Série</label>
+          <input id="ctpsSerie" placeholder="Série da CTPS" required />
+        </div>
+      </div>
+      <div class="row4" style="margin-top:8px">
+        <div>
+          <label>Matrícula</label>
+          <input id="matricula" placeholder="000123" required />
+        </div>
+        <div>
+          <label>Unidade</label>
+          <input id="unidade" placeholder="Código/Descrição" required />
+        </div>
+        <div>
+          <label>Local de admissão</label>
+          <input id="localAdmissao" placeholder="Cidade/Unidade" required />
+        </div>
+        <div>
+          <label>Data de admissão</label>
+          <input id="dataAdmissao" type="date" required />
+        </div>
+      </div>
+
+      <!-- Endereço -->
+      <div class="row2" style="margin-top:8px">
+        <div>
+          <label>Endereço residencial (rua, nº, complemento, bairro)</label>
+          <textarea id="endereco" placeholder="Rua Exemplo, 123, Apto 45, Bairro Exemplo" rows="3" required></textarea>
+        </div>
+        <div>
+          <label>Observações (opcional)</label>
+          <textarea id="obs" placeholder="Ex.: mudança de rota a partir de 15/08" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="row4" style="margin-top:8px">
+        <div>
+          <label>CEP</label>
+          <input id="cep" placeholder="00000-000" required />
+        </div>
+        <div>
+          <label>Cidade</label>
+          <input id="cidade" placeholder="São Paulo" required />
+        </div>
+        <div>
+          <label>Estado (UF)</label>
+          <input id="uf" placeholder="SP" required />
+        </div>
+        <div>
+          <label>LGPD</label>
+          <input id="lgpdInfo" value="Tratamento de dados conforme LGPD – ciência do empregado." readonly />
+        </div>
+      </div>
+    </section>
+
+    <!-- Meios de transporte -->
+    <section class="card">
+      <strong>Meios de transporte utilizados</strong>
+      <div class="row4" style="margin-top:8px">
+        <label><input type="checkbox" class="meio" value="Metro" /> Metrô</label>
+        <label><input type="checkbox" class="meio" value="Onibus Municipal" /> Ônibus Municipal</label>
+        <label><input type="checkbox" class="meio" value="Onibus Intermunicipal" /> Ônibus Intermunicipal</label>
+        <label><input type="checkbox" class="meio" value="Trem" /> Trem</label>
+      </div>
+    </section>
+
+    <!-- Linhas (até 8) -->
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <strong>Linhas de transporte (até 8)</strong>
+        <div class="muted">Denominação = nome da linha / empresa. Qtd R->T (ida) e Qtd T->R (volta).</div>
+      </div>
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th class="center">Ativar</th>
+            <th>Denominação da linha (nome/empresa)</th>
+            <th>Modal</th>
+            <th>Valor (R$)</th>
+            <th class="center">Qtd R->T (ida)</th>
+            <th class="center">Qtd T->R (volta)</th>
+            <th class="center">Valor dia (R$)</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="btns">
+        <button id="btnAdd">Adicionar linha</button>
+        <button id="btnReset">Limpar todas</button>
+      </div>
+      <div id="msg" class="error"></div>
+    </section>
+
+    <!-- Ações -->
+    <section class="card">
+      <div class="pill" id="pQtd">Linhas ativas: 0</div>
+      <div class="btns" style="margin-top:10px">
+        <button class="primary" id="btnPDF">Gerar PDF</button>
+        <button class="whats" id="btnWhats">Enviar dados via WhatsApp</button>
+      </div>
+      <div class="muted" style="margin-top:6px">
+        Observação: o WhatsApp abre com o texto pronto; o PDF deve ser anexado manualmente.
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- jsPDF + autoTable -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.3/dist/jspdf.plugin.autotable.min.js"></script>
+<script>
+  // Utilidades
+  const $$ = sel => document.querySelector(sel);
+  const onlyDigits = s => (s||'').replace(/\D+/g,'');
+  function toNumberBR(v){
+    if(typeof v === 'number') return v;
+    v = String(v||'').replace(/\./g,'').replace(',','.');
+    const n = parseFloat(v);
+    return isNaN(n)?0:n;
+  }
+  function cpfValido(cpf){
+    cpf = onlyDigits(cpf);
+    if(!cpf || cpf.length!==11 || /^(\d)\1{10}$/.test(cpf)) return false;
+    const dv = (n) => { let soma=0; for(let i=0;i<n;i++) soma += parseInt(cpf[i])*(n+1-i); let r=(soma*10)%11; return r===10?0:r; };
+    return dv(9)===parseInt(cpf[9]) && dv(10)===parseInt(cpf[10]);
+  }
+
+  // Linhas até 8
+  const MAX = 8, tbody = $$('#tbody'), msg = $$('#msg');
+  function novaLinha(){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="center"><input type="checkbox" class="use" aria-label="Ativar linha"></td>
+      <td><input class="denom" placeholder="Empresa de ônibus" required></td>
+      <td>
+        <select class="modal" required>
+          <option value="">Selecione</option>
+          <option>Onibus Municipal</option><option>Onibus Intermunicipal</option><option>Metro</option><option>Trem</option>
+        </select>
+      </td>
+      <td><input class="valor" inputmode="decimal" placeholder="Ex.: 5,50" required></td>
+      <td class="center"><input class="qtd_rt" type="number" min="0" max="200" value="0" placeholder="Ida" required></td>
+      <td class="center"><input class="qtd_tr" type="number" min="0" max="200" value="0" placeholder="Volta" required></td>
+      <td class="center"><span class="valMes">0,00</span></td>
+    `;
+    tbody.appendChild(tr);
+    tr.querySelectorAll('input,select').forEach(el=>{
+      el.addEventListener('input', ()=>{
+        el.classList.remove('invalid');
+        calcLinha(tr);
+      });
+    });
+  }
+  function linhas(){ return Array.from(tbody.querySelectorAll('tr')); }
+  function calcLinha(tr){
+    const use = tr.querySelector('.use').checked;
+    const valor = toNumberBR(tr.querySelector('.valor').value);
+    const qtd_rt = parseInt(tr.querySelector('.qtd_rt').value||0,10);
+    const qtd_tr = parseInt(tr.querySelector('.qtd_tr').value||0,10);
+    const totalQ = qtd_rt + qtd_tr;
+    const v = use ? (valor*totalQ) : 0;
+    tr.querySelector('.valMes').textContent = v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    updateAtivas();
+  }
+  function updateAtivas(){
+    const ativas = linhas().filter(tr=>tr.querySelector('.use').checked).length;
+    $$('#pQtd').textContent = `Linhas ativas: ${ativas}`;
+  }
+  for(let i=0;i<3;i++) novaLinha();
+
+  $$('#btnAdd').addEventListener('click', ()=>{
+    if(linhas().length>=MAX){ msg.textContent='Limite de 8 linhas atingido.'; return; }
+    msg.textContent=''; novaLinha();
+  });
+  $$('#btnReset').addEventListener('click', ()=>{
+    tbody.innerHTML='';
+    for(let i=0;i<3;i++) novaLinha();
+    msg.textContent='';
+    updateAtivas();
+  });
+
+  // ---------- Validação com lista de campos faltantes ----------
+  function clearInvalid(){
+    document.querySelectorAll('.invalid').forEach(el=>el.classList.remove('invalid'));
+    msg.innerHTML = '';
+  }
+  function addError(el){
+    if(!el) return;
+    el.classList.add('invalid');
+    el.setAttribute('aria-invalid','true');
+  }
+
+  function validar(){
+    clearInvalid();
+    const errors = [];
+    let firstInvalid = null;
+
+    // Campos obrigatórios
+    const required = [
+      ['#opcaoVT','Opção de Vale-Transporte'],
+      ['#competencia','Competência'],
+      ['#statusCartao','Status do cartão VT'],
+      ['#nome','Nome completo'],
+      ['#cpf','CPF'],
+      ['#ctpsNumero','CTPS nº'],
+      ['#ctpsSerie','Série'],
+      ['#matricula','Matrícula'],
+      ['#unidade','Unidade'],
+      ['#localAdmissao','Local de admissão'],
+      ['#dataAdmissao','Data de admissão'],
+      ['#endereco','Endereço residencial'],
+      ['#cep','CEP'],
+      ['#cidade','Cidade'],
+      ['#uf','Estado (UF)']
+    ];
+
+    for(const [sel,label] of required){
+      const el = $$(sel);
+      if(!el || !String(el.value||'').trim()){
+        errors.push(label);
+        addError(el);
+        if(!firstInvalid) firstInvalid = el;
+      }
+    }
+
+    // CPF válido
+    const cpfEl = $$('#cpf');
+    if(cpfEl && String(cpfEl.value||'').trim()){
+      if(!cpfValido(cpfEl.value)){
+        errors.push('CPF inválido');
+        addError(cpfEl);
+        if(!firstInvalid) firstInvalid = cpfEl;
+      }
+    }
+
+    // Linhas – somente se optar por SIM
+    const opcao = $$('#opcaoVT').value;
+    const ativas = linhas().filter(tr=>tr.querySelector('.use').checked);
+    const linhaErrors = [];
+    if(opcao==='SIM'){
+      if(ativas.length===0){
+        linhaErrors.push('Ative ao menos uma linha e preencha os campos da linha.');
+      }else{
+        ativas.forEach((tr,idx)=>{
+          const falta = [];
+          const denom = tr.querySelector('.denom');
+          const modal = tr.querySelector('.modal');
+          const valor = tr.querySelector('.valor');
+          const qtd_rt = tr.querySelector('.qtd_rt');
+          const qtd_tr = tr.querySelector('.qtd_tr');
+
+          if(!String(denom.value||'').trim()){ falta.push('Denominação'); addError(denom); if(!firstInvalid) firstInvalid = denom; }
+          if(!String(modal.value||'').trim()){ falta.push('Modal'); addError(modal); if(!firstInvalid) firstInvalid = modal; }
+          const v = toNumberBR(valor.value);
+          if(!(v>0)){ falta.push('Valor (> 0)'); addError(valor); if(!firstInvalid) firstInvalid = valor; }
+          if(isNaN(parseInt(qtd_rt.value||'',10))){ falta.push('Qtd R→T'); addError(qtd_rt); if(!firstInvalid) firstInvalid = qtd_rt; }
+          if(isNaN(parseInt(qtd_tr.value||'',10))){ falta.push('Qtd T→R'); addError(qtd_tr); if(!firstInvalid) firstInvalid = qtd_tr; }
+
+          if(falta.length){
+            linhaErrors.push(`Linha ${idx+1}: ${falta.join(', ')}`);
+          }
+        });
+      }
+    }
+
+    // Mensagens
+    if(errors.length || linhaErrors.length){
+      const parts = [];
+      if(errors.length){
+        parts.push('<strong>Corrija os campos a seguir:</strong>');
+        parts.push('<ul class="error-list">' + errors.map(e=>`<li>${e}</li>`).join('') + '</ul>');
+      }
+      if(linhaErrors.length){
+        parts.push('<strong>Linhas de transporte:</strong>');
+        parts.push('<ul class="error-list">' + linhaErrors.map(e=>`<li>${e}</li>`).join('') + '</ul>');
+      }
+      msg.innerHTML = parts.join('');
+      if(firstInvalid){
+        firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+        firstInvalid.focus({preventScroll:true});
+      }
+      return false;
+    }
+    return true;
+  }
+
+  // Remover destaque ao digitar/selecionar
+  document.addEventListener('input', (ev)=>{
+    const t = ev.target;
+    if(t.matches('input,select,textarea')) t.classList.remove('invalid');
+  });
+  document.addEventListener('change', (ev)=>{
+    const t = ev.target;
+    if(t.matches('input,select,textarea')) t.classList.remove('invalid');
+  });
+
+  function getPayload(){
+    if(!validar()) return null;
+    const meioSel = Array.from(document.querySelectorAll('.meio:checked')).map(x=>x.value);
+    const pass = [];
+    linhas().forEach((tr,idx)=>{
+      if(!tr.querySelector('.use').checked) return;
+      const denom = tr.querySelector('.denom').value.trim();
+      const modal = tr.querySelector('.modal').value;
+      const valor = toNumberBR(tr.querySelector('.valor').value);
+      const qtd_rt = parseInt(tr.querySelector('.qtd_rt').value||0,10);
+      const qtd_tr = parseInt(tr.querySelector('.qtd_tr').value||0,10);
+      pass.push({idx: idx+1, denom, modal, valor, qtd_rt, qtd_tr, valormes: valor*(qtd_rt+qtd_tr)});
+    });
+    return {
+      opcao: $$('#opcaoVT').value,
+      competencia: $$('#competencia').value,
+      statusCartao: $$('#statusCartao').value,
+      nome: $$('#nome').value.trim(),
+      cpfRaw: $$('#cpf').value.trim(),
+      cpf: onlyDigits($$('#cpf').value),
+      ctpsNumero: $$('#ctpsNumero').value.trim(),
+      ctpsSerie: $$('#ctpsSerie').value.trim(),
+      matricula: $$('#matricula').value.trim(),
+      unidade: $$('#unidade').value.trim(),
+      localAdmissao: $$('#localAdmissao').value.trim(),
+      dataAdmissao: $$('#dataAdmissao').value,
+      endereco: $$('#endereco').value.trim(),
+      cep: $$('#cep').value.trim(),
+      cidade: $$('#cidade').value.trim(),
+      uf: $$('#uf').value.trim(),
+      obs: $$('#obs').value.trim(),
+      lgpdInfo: 'Tratamento de dados conforme LGPD – ciência do empregado.',
+      meios: meioSel,
+      pass
+    };
+  }
+
+  // --------- PDF COMPACTO A4 ----------
+  async function gerarPDF(){
+    const P = getPayload(); if(!P) return null;
+    const {jsPDF} = window.jspdf;
+    const doc = new jsPDF({unit:'pt',format:'a4'}); // 595 x 842 pt
+
+    // Margens e medidas
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const MARGIN_L = 36, MARGIN_R = 36, MARGIN_T = 36, MARGIN_B = 36;
+    const W = pageW - MARGIN_L - MARGIN_R;
+    const PAGE_BOTTOM = pageH - MARGIN_B;
+
+    // Tipografia
+    const LH = 12;
+    let y = MARGIN_T;
+
+    function ensureSpace(h){
+      if(y + h > PAGE_BOTTOM){ doc.addPage(); y = MARGIN_T; }
+    }
+    function box(y0, h, title){
+      doc.setDrawColor(0); doc.setLineWidth(0.6);
+      doc.roundedRect(MARGIN_L, y0, W, h, 5, 5);
+      if(title){
+        doc.setFont('Helvetica','bold'); doc.setFontSize(10.5);
+        doc.text(title, MARGIN_L+10, y0+16);
+      }
+    }
+    function checkbox(x, y0, checked, text){
+      doc.rect(x, y0, 10, 10);
+      if(checked){ doc.setLineWidth(1); doc.line(x+2,y0+5,x+4.5,y0+8); doc.line(x+4.5,y0+8,x+8,y0+2); doc.setLineWidth(0.5); }
+      doc.setFont('Helvetica',''); doc.setFontSize(9.5);
+      doc.text(text, x+14, y0+9);
+    }
+
+    // Título centralizado
+    doc.setFont('Helvetica','bold'); doc.setFontSize(12.5);
+    doc.text('TERMO DE OPÇÃO DO VALE-TRANSPORTE', pageW/2, y, {align:'center'});
+    y += 18;
+
+    // Opção
+    ensureSpace(58);
+    const yOpt = y; box(yOpt, 48, 'Opção');
+    checkbox(MARGIN_L+10, yOpt+24, P.opcao==='SIM',  '1 - SIM, desejo utilizar o sistema de Vale-Transporte.');
+    checkbox(MARGIN_L+10, yOpt+38, P.opcao==='NÃO',  '2 - NÃO desejo utilizar o sistema de Vale-Transporte.');
+    y += 58;
+
+    // Identificação + Endereço
+    const ident1 = `Eu, ${P.nome}, portador da CTPS nº ${P.ctpsNumero}, série ${P.ctpsSerie}, empregado do Hospital São Camilo,`;
+    const ident2 = `declarando residir no seguinte endereço:`;
+
+    const addrFree = doc.splitTextToSize(P.endereco || '-', W-28);
+    const cepLinha = `CEP: ${P.cep || ''}    Cidade: ${P.cidade || ''}    Estado: ${P.uf || ''}`;
+    const lgpdLinha = P.lgpdInfo || 'Tratamento de dados conforme LGPD – ciência do empregado.';
+    const addrBlockLines = ['Endereço:', ...addrFree, cepLinha, lgpdLinha];
+
+    const headH = 2*LH + 10;
+    const addrBoxH = (addrBlockLines.length*LH) + 18;
+    const identTotalH = headH + addrBoxH + 18;
+
+    ensureSpace(24 + identTotalH);
+    const yId = y; 
+    box(yId, identTotalH, 'Identificação do Empregado');
+
+    doc.setFont('Helvetica',''); 
+    doc.setFontSize(10);
+
+    let tY = yId + 24;
+    tY += LH;
+    doc.text(ident1, MARGIN_L+14, tY); 
+    tY += LH;
+    doc.text(ident2, MARGIN_L+14, tY); 
+    tY += LH + 4;
+
+    const addrTop = tY;
+    let ay = addrTop + 14;
+    addrBlockLines.forEach(line => { 
+      doc.text(line, MARGIN_L+14, ay); 
+      ay += LH; 
+    });
+
+    y = yId + identTotalH + 6;
+
+    // Meios de transporte
+    ensureSpace(36);
+    const labels = ['Metrô','Ônibus Municipal','Ônibus Intermunicipal','Trem'];
+    const mapSel = {
+      'Metrô': P.meios.includes('Metro'),
+      'Ônibus Municipal': P.meios.includes('Onibus Municipal'),
+      'Ônibus Intermunicipal': P.meios.includes('Onibus Intermunicipal'),
+      'Trem': P.meios.includes('Trem')
+    };
+    let cx = MARGIN_L+10, cy = y, itemsOnRow = 0;
+    labels.forEach(lbl=>{
+      checkbox(cx, cy, mapSel[lbl], lbl);
+      cx += 160; itemsOnRow++;
+      if(itemsOnRow===2){ cx = MARGIN_L+10; cy += 16; itemsOnRow = 0; }
+    });
+    y = cy + 20;
+
+    // Tabela Linhas
+    ensureSpace(44);
+    box(y, 24, 'Linhas e Quantidades (mês)'); y += 32;
+
+    const body = (P.pass.length? P.pass : [{denom:'',modal:'',valor:0,qtd_rt:'',qtd_tr:''}]).map(p => [
+      p.denom || '',
+      p.modal || '',
+      (p.valor||0).toFixed(2),
+      String(p.qtd_rt||''),
+      String(p.qtd_tr||''),
+      ((p.valor||0)*((p.qtd_rt||0)+(p.qtd_tr||0))).toFixed(2)
+    ]);
+
+    doc.autoTable({
+      startY: y,
+      theme: 'grid',
+      margin: {left: MARGIN_L, right: MARGIN_R},
+      tableWidth: W,
+      styles: {font: 'Helvetica', fontSize: 8.8, cellPadding: 2, lineColor: [0,0,0], lineWidth: 0.2, overflow: 'linebreak', halign: 'left', valign: 'middle'},
+      headStyles: {fillColor: [240,240,240], textColor: [0,0,0], fontStyle: 'bold', fontSize: 8.8},
+      columnStyles: {
+        0: {cellWidth: 210},
+        1: {cellWidth: 100},
+        2: {cellWidth: 60, halign:'right'},
+        3: {cellWidth: 50, halign:'right'},
+        4: {cellWidth: 50, halign:'right'},
+        5: {cellWidth: 60, halign:'right'}
+      },
+      head: [['Denominação','Modal','Valor (R$)','Qtd R->T','Qtd T->R','Valor mês']],
+      body,
+      rowPageBreak: 'avoid',
+      pageBreak: 'auto',
+      didDrawPage: data => {
+        const str = 'Página ' + data.pageNumber;
+        doc.setFont('Helvetica',''); doc.setFontSize(8.5);
+        doc.text(str, (doc.internal.pageSize.getWidth()/2), doc.internal.pageSize.getHeight()-12, {align:'center'});
+      }
+    });
+    y = doc.lastAutoTable.finalY + 10;
+
+    // Declarações
+    const decl = [
+      '',
+      'Assumo o compromisso de utilizar o Vale-Transporte exclusivamente para o meu efetivo deslocamento',
+      'residência-trabalho e vice-versa, e firmo ter conhecimento do Artigo 7º, §3º do Decreto nº 95.247/1987,',
+      'de que constitui falta grave o seu uso indevido ou que esta declaração seja falsa.',
+      'Comprometo-me a atualizar anualmente as informações ou a qualquer tempo quando ocorrer mudança',
+      'residencial ou dos meios de transporte.',
+      'Autorizo a empresa a descontar mensalmente até 6% do meu salário base, limitado ao valor mensal a mim',
+      'entregue, referente aos vales-transporte utilizados.'
+    ];
+    const obsLines = P.obs ? doc.splitTextToSize(`Observações: ${P.obs}`, W-20) : [];
+    const declH = decl.length*LH + (obsLines.length? obsLines.length*LH + 6 : 0) + LH + 18;
+
+    ensureSpace(declH);
+    const yLeg = y; box(yLeg, declH, 'Declarações');
+    doc.setFont('Helvetica',''); doc.setFontSize(9.8);
+    let ly = yLeg+20;
+    decl.forEach(t=>{ doc.text(t, MARGIN_L+10, ly); ly += LH; });
+    if(obsLines.length){
+      ly += 4;
+      obsLines.forEach(line=>{ doc.text(line, MARGIN_L+10, ly); ly += LH; });
+    }
+    ly += LH;
+    y = yLeg + declH + 6;
+
+    // Assinatura
+    ensureSpace(96);
+    const yAss = y; box(yAss, 90, 'Assinatura');
+    doc.setFont('Helvetica',''); doc.setFontSize(9.8);
+    const dataAdm = P.dataAdmissao ? new Date(P.dataAdmissao) : null;
+    const dataStr = dataAdm ? `${String(dataAdm.getDate()).padStart(2,'0')}/${String(dataAdm.getMonth()+1).padStart(2,'0')}/${dataAdm.getFullYear()}` : '____/____/______';
+    doc.text(`Local e Data de admissão: ${P.localAdmissao || '____________________'}, ${dataStr}`, MARGIN_L+10, yAss+28);
+    doc.text('Assinatura do empregado: ________________________________________________', MARGIN_L+10, yAss+58);
+
+    const nomeSafe = (P.nome||'').trim().replace(/\s+/g,'_').replace(/[^\w\-]/g,'');
+    const comp = (P.competencia||'').replace(/[^0-9\-]/g,'');
+    const fname = `Termo_Opt_VT_${nomeSafe}_${comp}_${P.opcao}.pdf`;
+    doc.save(fname);
+    return {fileName: fname, payload: P};
+  }
+  // --------- FIM PDF ----------
+
+  // ----------------- TITLE CASE + REGRAS POR CAMPO -----------------
+  const STOPWORDS = new Set(['da','de','do','das','dos','e','para','a','o','as','os','em','no','na','nos','nas','por']);
+  function toTitleCaseBR(s){
+    s = (s||'').toLowerCase();
+    return s.split(/\s+/).map((word, idx) => {
+      if(!word) return word;
+      // trata hifenizados (ex.: rio-de-janeiro)
+      const parts = word.split('-').map((seg, i) => {
+        if(!seg) return seg;
+        const keepLower = (idx>0 && i===0 && STOPWORDS.has(seg));
+        if(keepLower) return seg;
+        return seg.charAt(0).toUpperCase() + seg.slice(1);
+      });
+      return parts.join('-');
+    }).join(' ');
+  }
+
+  // Aplica em inputs/textarea de texto livre, com exceções.
+  document.addEventListener('input', function(e) {
+    const t = e.target;
+    if(!(t && (t.tagName==='INPUT' || t.tagName==='TEXTAREA'))) return;
+
+    // UF: sempre 2 letras maiúsculas
+    if(t.id === 'uf'){
+      t.value = (t.value || '')
+        .toUpperCase()
+        .replace(/[^A-Z]/g,'')
+        .slice(0,2);
+      return;
+    }
+
+    // Campos que NÃO devem sofrer Title Case
+    const skipById = new Set(['cpf','cep','ctpsNumero','ctpsSerie','matricula','competencia','dataAdmissao']);
+    if(skipById.has(t.id)) return;
+
+    // Campos numéricos das linhas
+    if(t.classList.contains('valor') || t.classList.contains('qtd_rt') || t.classList.contains('qtd_tr')) return;
+
+    // Tipo precisa ser texto (ou textarea)
+    if(t.tagName==='TEXTAREA' || ['','text','search',undefined].includes(t.type)){
+      t.value = toTitleCaseBR(t.value);
+    }
+  });
+  // -----------------------------------------------------------------
+
+  // WhatsApp – mesma ordem do PDF
+  function enviarWhats(P){
+    const destino = '5511937158242';
+    const linhas = [];
+    linhas.push('TERMO DE OPCAO DO VALE-TRANSPORTE');
+    linhas.push(`1 - (${P.opcao==='SIM'?'X':' '}) SIM, desejo utilizar o sistema de Vale-Transporte.`);
+    linhas.push(`2 - (${P.opcao==='NÃO'?'X':' '}) NAO desejo utilizar o sistema de Vale-Transporte.`);
+    linhas.push(`Competencia: ${P.competencia}`);
+    linhas.push(`Eu, ${P.nome}, portador da CTPS nº ${P.ctpsNumero}, serie ${P.ctpsSerie}, empregado do Hospital Sao Camilo,`);
+    linhas.push(`declaro que estou residindo no seguinte endereco:`);
+    linhas.push(`${P.endereco}`);
+    linhas.push(`CEP: ${P.cep} - Cidade: ${P.cidade} - Estado: ${P.uf}`);
+    linhas.push(`LGPD: ${P.lgpdInfo}`);
+    const meiosTxt = ['Metro','Onibus Municipal','Onibus Intermunicipal','Trem']
+      .map(m => `${P.meios.includes(m)?'[X]':'[ ]'} ${m}`).join('  ');
+    linhas.push(`Meios de transporte: ${meiosTxt}`);
+    linhas.push('Linhas (Denominacao / Modal / Valor / Qtd R->T / Qtd T->R / Valor mes):');
+    (P.pass.length?P.pass:[{denom:'',modal:'',valor:0,qtd_rt:'',qtd_tr:''}]).forEach(p=>{
+      const vUnit = (p.valor||0).toFixed(2);
+      const total = ((p.valor||0)*((p.qtd_rt||0)+(p.qtd_tr||0))).toFixed(2);
+      linhas.push(`${p.denom} | ${p.modal} | ${vUnit} | ${p.qtd_rt} | ${p.qtd_tr} | ${total}`);
+    });
+    if(P.obs) linhas.push(`Observacoes: ${P.obs}`);
+    const dataAdmTxt = P.dataAdmissao ? new Date(P.dataAdmissao).toLocaleDateString('pt-BR') : '';
+    linhas.push(`Local e Data de admissao: ${P.localAdmissao || ''}, ${dataAdmTxt}`);
+    if(P.matricula) linhas.push(`Matricula: ${P.matricula}`);
+    if(P.cpfRaw) linhas.push(`CPF: ${P.cpfRaw}`);
+    if(P.unidade) linhas.push(`Unidade: ${P.unidade}`);
+    if(P.statusCartao) linhas.push(`Status do cartao: ${P.statusCartao}`);
+    const texto = encodeURIComponent(linhas.join('\n'));
+    const url = `https://wa.me/${destino}?text=${texto}`;
+    window.open(url, '_blank');
+  }
+
+  // Botões
+  $$('#btnPDF').addEventListener('click', gerarPDF);
+  $$('#btnWhats').addEventListener('click', async ()=>{
+    const res = await gerarPDF();
+    if(!res) return;
+    enviarWhats(res.payload);
+  });
+</script>
+</body>
+</html>
