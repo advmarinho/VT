@@ -51,6 +51,35 @@
   }
   .error-list li{margin:2px 0}
 
+  /* Ajuste da tabela no mobile */
+  #tbl {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  #tbl th, 
+  #tbl td {
+    min-width: 90px; /* Ajuste mínimo para ver o valor */
+  }
+  
+  #tbl th:nth-child(2), /* Denominação */
+  #tbl td:nth-child(2) {
+    min-width: 180px; /* Denominação mais larga */
+  }
+  
+  #tbl th:nth-child(4), /* Valor (R$) */
+  #tbl td:nth-child(4) {
+    min-width: 100px;
+  }
+  
+  #tbl th:nth-child(7), /* Valor dia (R$) */
+  #tbl td:nth-child(7) {
+    min-width: 100px;
+  }
+
+ /* Ajuste da tabela no mobile */
+  
   @media(max-width:980px){
     .wrap{padding:8px}
     .row,.row2,.row4{grid-template-columns:1fr}
